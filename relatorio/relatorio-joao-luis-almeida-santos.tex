@@ -2,7 +2,7 @@
 \usepackage{xcolor}
 \usepackage{minted}
 \usemintedstyle{trac}
-\setminted{linenos=true, fontsize=\footnotesize}
+\setminted{fontsize=\footnotesize, breaklines=true, breakanywhere=true}
 
 \definecolor{LightGray}{gray}{0.9}
 
@@ -10,7 +10,7 @@
 
 \begin{document}
 
-\title{Trabalho de Organização de Computadores}
+\title{Trabalho de Organização de Computadores\thanks{Código fonte disponível em: \url{https://github.com/lyszt/undertale-in-extremis\_core}}}
 
 \author[1]{João Luís Almeida Santos}
 
@@ -38,8 +38,7 @@ O projeto, denominado \textit{Undertale in Extremis}, foi desenvolvido como prop
  escolhendo a cada turno entre seis ações: ataque, defesa, Absolute Grit, Soul Suck, Final Execution e Mirror Shield.
  Ambos os bots iniciam com 100 pontos de vida (HP) e 100 de mana (MP), sendo o MP regenerado em +2 por turno.
 \\\\
-\begin{table}[h]
-\caption{Ações disponíveis por turno}
+\vspace{4pt}\noindent\captionof{table}{Ações disponíveis por turno}
 {\renewcommand{\arraystretch}{1.5}
 \begin{tabular}{p{1.8cm}p{4.5cm}p{1.2cm}}
 \hline
@@ -53,7 +52,8 @@ Final Execution & 800\% de dano. Falha se alvo $>$50\% HP. & 150 MP \\
 Mirror Shield  & Reflete o próximo ataque recebido. & 30 MP \\
 \hline
 \end{tabular}}
-\end{table}
+\vspace{4pt}
+
 
 O ataque realiza uma verificação 1d20: abaixo de 10 erra, acima acerta, e no 20 resulta em crítico com dano dobrado.
 A defesa bloqueia o próximo ataque recebido, podendo ripostar em um crítico.
@@ -62,8 +62,7 @@ A Soul Suck causa 1--12 de dano ao próprio bot, drenando igual MP do inimigo e 
 A Final Execution causa 800\% de dano ao custo de 150 MP, mas falha se o alvo estiver acima de 50\% de HP.
 O Mirror Shield reflete o próximo ataque recebido de volta ao atacante, ao custo de 30 MP.
 
-\begin{table}[h]
-\caption{Atributos iniciais de cada bot}
+\vspace{4pt}\noindent\captionof{table}{Atributos iniciais de cada bot}
 {\renewcommand{\arraystretch}{1.5}
 \begin{tabular}{ll}
 \hline
@@ -74,11 +73,11 @@ MP & 100 \\
 Regeneração de MP & +2 por turno \\
 \hline
 \end{tabular}}
-\end{table}
+\vspace{4pt}
 
 
-\begin{table}[h]
-\caption{Estratégias dos bots}
+
+\vspace{4pt}\noindent\captionof{table}{Estratégias dos bots}
 {\renewcommand{\arraystretch}{1.5}
 \begin{tabular}{p{1.2cm}p{1.4cm}p{4.5cm}}
 \hline
@@ -89,9 +88,56 @@ Chara  & Inteligente & Acumula MP via Soul Suck até atingir 150 MP, reduz o ini
 Toby   & Troll    & Monitora o próprio HP e o MP do inimigo. Se estiver abaixo de 50 HP e o inimigo tiver $\geq$150 MP, levanta o Mirror Shield para refletir a Final Execution. Fora dessa janela, mistura ataques e Soul Suck, e executa o inimigo quando as condições permitem. \\
 \hline
 \end{tabular}}
-\end{table}
+\vspace{4pt}
+
 
 \section{Desafios e Soluções}
+
+\subsection{Randomização}
+Fazer um algoritmo que gerasse números realmente aleatórios foi desafiante. E para esse projeto, eu tive que
+misturas alguns métodos. A base principal foi o Xorshift, inventado por Marsaglia em 2003 \cite{marsaglia2003xorshift}, publicado no
+Journal of Statistical Software. 
+Em seu artigo, Marsaglia descreve:
+\begin{tcolorbox}[colback=gray!8, colframe=gray!40, boxrule=0.4pt, arc=2pt, left=4pt, right=4pt, top=4pt, bottom=4pt]
+\normalsize\itshape
+A xorshift random number generator (xorshift RNG) produces a sequence of $2^{32}-1$ integers $x$, or a sequence of $2^{64}-1$ pairs $x,y$, or a sequence of $2^{96}-1$ triples $x,y,z$, etc., by means of repeated use of a simple computer construction: exclusive-or (xor) a computer word with a shifted version of itself. In C, the basic operation is \texttt{y\^{}(y<<a)} for shifts left, \texttt{y\^{}(y>>a)} for shifts right. (In Fortran, a single form, \texttt{ieor(y,ishft(y,a))} will produce the desired result, with negative \texttt{a} for shifts right, nonnegative for shifts left.) Combining such xorshift operations for various shifts and arguments provides extremely fast and simple RNGs that seem to do well on tests of randomness. To give an idea of the power and effectiveness of xorshift operations, here is the essential part of a C procedure that, with only three xorshift operations per call, will provide $2^{128}-1$ random 32-bit integers, given four random seeds $x,y,z,w$: \cite{marsaglia2003xorshift}
+\end{tcolorbox}
+
+Em termos simples, o algoritmo pega um número aleatório, que é chamado de seed,
+faz três operações de XOR com versões deslocadas de si mesmo, e 
+o resultado é o próximo número da sequência. A seed é atualizada 
+a cada chamada. No entanto, havia um problema. A seed colocada no .data era sempre a mesma, então o algoritmo
+de randomização era na verdade, nada aleatório. Por isso, foi necessário utilizar a chamada de sistema de 
+número 30 para multiplicar a seed pelos milisegundos do horário atual. No caso do número estourar, isso
+é tranquilo, pois o overflow simplesmente descarta os bits mais altos. O 	
+exttt{remu} é usado por dois motivos para limitar o resultado ao range desejado via módulo
+e por ser a versão sem sinal da instrução, garantindo que o resultado nunca seja negativo,
+já que o xorshift pode produzir valores negativos.
+
+\begin{minted}{asm}
+randomizer:
+  mv      s0, a0            # salva o range maximo
+  la      t3, seed
+  lw      t0, 0(t3)         # carrega a semente atual
+
+  slli    t1, t0, 13
+  xor     t0, t0, t1        # xorshift esquerda 13
+  srli    t1, t0, 17
+  xor     t0, t0, t1        # xorshift direita 17
+  slli    t1, t0, 5
+  xor     t0, t0, t1        # xorshift esquerda 5
+
+  remu    s1, t0, s0        # limita ao range; remu evita negativos
+  addi    s1, s1, 1         # resultado em [1, range]
+
+  li      a7, 30
+  ecall                     # le o tempo atual do sistema
+  mul     t5, a0, t0
+  xor     t5, t5, t0        # mistura tempo com xorshift
+  sw      t5, 0(t3)         # atualiza a semente
+
+  mv      a1, s1
+\end{minted}
 
 \subsection{Gerenciamento de Stack}
 
@@ -122,9 +168,75 @@ em vez de \texttt{.end\_macro}. Aprendi essa técnica no último semestre de ORG
     .end_macro
 
 \end{minted}
+Mesmo com os macros, o programa chegou a crashar durante o desenvolvimento. 
+Algumas habilidades saíam da função via \texttt{j} para outro ponto do código 
+em vez de retornar normalmente. Nesses casos, o \texttt{endF} nunca era executado: 
+a stack crescia a cada uso da habilidade. A correção foi mover o \texttt{endF} para dentro de
+\texttt{do\_attack\_crit\_no\_message}, que passa a desalocar a stack de quem saltou para ele.
 
+\begin{minted}{asm}
+do_absolute_grit:
+  startF
+  call calculate_damage
+  j do_attack_crit_no_message  # endF nunca e chamado
+
+# para consertar o problema foi necessário redefinir a função de crítico, e nessa versão alternativa,
+# há um endF
+\end{minted}
+
+\subsection{Animação do modo de observação}
+Outro desafio foi fazer as animações de forma bonita e em tempo real. Para esta parte, foi usada a Gemini Pro 3.0 para 
+gerar os frames além do Ascii original, obtido de \cite{emojicombos_undertale}. Isso pelo fato de que todo personagem tem 5 frames de animação, e estes são definidos
+dentro do .data. A forma de limpar a tela no terminal também foi algo que eu descobri pedindo para o Gemini Pro 3.0.
+
+\begin{minted}{asm}
+# quando o terminal lê esse byte, ele dá um espaçamento do tamanho atual da tela em que você está.
+clear_screen: .byte 27, 91, 50, 74, 27, 91, 72, 0
+# então na verdade ele não limpa o terminal, ele só dá um pulo pra baixo.
+\end{minted}
+
+Para o modo de simulação, a animação era muito lenta, pois utilizada a instrução 32 várias vezes para esperar 500 - 1000 milisegundos
+para que as animações dessem a falsa impressão de serem fluídas. Sem esse wait, elas não podem ser vistas ou passam rápido demais. 
+Por conta disso, o modo de benchmarking não tem animações, e portanto também não possui wait, e roda muito mais rápido. O modo é controlado por uma flag \texttt{modo\_play} no \texttt{.data}: quando ativa, o programa pula todo o bloco de renderização e vai direto para a próxima ação.
+
+\begin{minted}{asm}
+  la t0, modo_play
+  lw t0, 0(t0)
+  bnez t0, do_turn_action  # em benchmark pula a animacao
+\end{minted}
+
+Os bytes do \texttt{clear\_screen} correspondem à sequência de escape ANSI \texttt{ESC[2J} seguida de \texttt{ESC[H}: o primeiro apaga o conteúdo visível e o segundo move o cursor para o canto superior esquerdo. O efeito visual é o de limpeza, mas o histórico do terminal continua acessível com scroll.
+
+\subsection{Habilidades}
+
+O randomizador calculava o dano em \texttt{t1}, registrador temporário que não é preservado por \texttt{ecall}. No meio da função, um ecall para leitura do tempo atualizava a semente do gerador, corrompendo o valor em \texttt{t1}. O dano resultante virava negativo, e a subtração de HP funcionava como cura.
+
+\begin{minted}{asm}
+remu    t1, t0, s0  # resultado corrompido pelo ecall seguinte
+addi    t1, t1, 1
+\end{minted}
+
+A correção foi mover o resultado para \texttt{s1}, que é preservado por chamadas de sistema.
+
+Ao verificar o status do escudo, o código calculava o offset do array com \texttt{slli t2, t2, 4} em vez de \texttt{slli t2, t2, 2}. Cada elemento do array ocupa uma word (4 bytes), então o shift correto é de 2 bits. Com shift de 4, o offset era 4 vezes maior que o esperado, lendo uma posição de memória completamente errada e fazendo o escudo nunca ativar.
+
+O primeiro problema era de lógica na decisão: sem um \texttt{j} explícito após a verificação de HP, o código caía diretamente na checagem de MP do inimigo independentemente da condição, fazendo o Toby levantar o escudo com frequência errada.
+
+\begin{minted}{asm}
+  ble t5, t6, decision_troll_check_enemy_mp
+  # faltava: j decision_troll_not_execute
+decision_troll_check_enemy_mp:
+\end{minted}
+
+O segundo era de design: fora da janela do escudo, Toby usava Soul Suck como ação padrão. Isso causava auto-dano constante sem benefício real contra Flowey, que nunca acumula MP. A correção foi trocar Soul Suck por uma mistura de ataque e defesa.
+Houveram outros problemas documentados, só que alguns deles se mantiveram como features reais. A execução
+não foi feita para causar 800\% de dano, foi pensada para apenas causar o dobro. Mas houve um erro de cálculo e 
+uma junção de multiplicações, e, nesse caso, foi mantido o bug porque realmente era mais certeiro.
 \section{Conclusão}
 
 \section{Anexos}
+
+\bibliographystyle{unsrt}
+\bibliography{citacoes}
 
 \end{document}

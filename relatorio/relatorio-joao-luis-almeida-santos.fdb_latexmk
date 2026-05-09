@@ -1,6 +1,14 @@
 # Fdb version 4
-["pdflatex"] 1778357938.07765 "/home/kaldwin/Development/Projects/extremis-lite_misc/relatorio/relatorio-joao-luis-almeida-santos.tex" "relatorio-joao-luis-almeida-santos.pdf" "relatorio-joao-luis-almeida-santos" 1778357941.18775 0
-  "/home/kaldwin/Development/Projects/extremis-lite_misc/relatorio/relatorio-joao-luis-almeida-santos.tex" 1778357934.6619 5023 e102560f190d72c33399eafe5b8147f8 ""
+["bibtex relatorio-joao-luis-almeida-santos"] 1778361734.27118 "relatorio-joao-luis-almeida-santos.aux" "relatorio-joao-luis-almeida-santos.bbl" "relatorio-joao-luis-almeida-santos" 1778361738.05604 0
+  "./citacoes.bib" 1778361345.40787 443 ba5779af76e86d815e76e59c18e387f7 ""
+  "/usr/share/texmf-dist/bibtex/bst/base/unsrt.bst" 1775415801 18030 1376b4b231b50c66211e47e42eda2875 ""
+  "relatorio-joao-luis-almeida-santos.aux" 1778361737.54143 5321 4d5e85eff38f5ab333976eeb46e580a2 "pdflatex"
+  (generated)
+  "relatorio-joao-luis-almeida-santos.bbl"
+  "relatorio-joao-luis-almeida-santos.blg"
+  (rewritten before read)
+["pdflatex"] 1778361734.35725 "/home/kaldwin/Development/Projects/extremis-lite_misc/relatorio/relatorio-joao-luis-almeida-santos.tex" "relatorio-joao-luis-almeida-santos.pdf" "relatorio-joao-luis-almeida-santos" 1778361738.05627 0
+  "/home/kaldwin/Development/Projects/extremis-lite_misc/relatorio/relatorio-joao-luis-almeida-santos.tex" 1778361731.18597 12669 8e420e88a32adc2f86c7f1f03623bb91 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc" 1775415801 2971 def0b6c1f0b107b3b936def894055589 ""
   "/usr/share/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathcal.enc" 1775415801 3356 2818ff063f8b5d0d850e1203330b9fda ""
   "/usr/share/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathex.enc" 1775415801 3374 7b7c21d9493820ef4980dfa6fd22840f ""
@@ -8,6 +16,8 @@
   "/usr/share/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathrm.enc" 1775415801 3159 6cd87b3b51190b4d6117d4c2f083ba2e ""
   "/usr/share/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-t1.enc" 1775415801 7007 7bfc8f72039f2cce6ca911c3c71db584 ""
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1775415801 3524 cb3e574dea2d1052e39280babc910dc8 ""
+  "/usr/share/texmf-dist/fonts/tfm/jknappen/ec/ecit0800.tfm" 1775415801 1536 09682d3e827df9145fea3c41a21d8b01 ""
+  "/usr/share/texmf-dist/fonts/tfm/jknappen/ec/ecit0900.tfm" 1775415801 1536 2a581b33e8ae2f16b1d733398b528242 ""
   "/usr/share/texmf-dist/fonts/tfm/jknappen/ec/ecrm0900.tfm" 1775415801 3584 d3d8ac8b25ca19c0a40b86a5db1e8ccc ""
   "/usr/share/texmf-dist/fonts/tfm/jknappen/ec/ecrm1000.tfm" 1775415801 3584 adb004a0c8e7c46ee66cad73671f37b4 ""
   "/usr/share/texmf-dist/fonts/tfm/jknappen/ec/ectt0800.tfm" 1775415801 1536 0b0b8ca286de6a006b681926403f35cd ""
@@ -36,6 +46,8 @@
   "/usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text-bolditalic.tfm" 1775415801 30864 cb50ef705e93af3b9fe826e03b18e597 ""
   "/usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text-italic.tfm" 1775415801 30900 0903f6d37c44d064d62d9c928b7560fc ""
   "/usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text.tfm" 1775415801 28540 097ba14dab39294b86bfe4de12d2fe0b ""
+  "/usr/share/texmf-dist/fonts/type1/public/cm-super/sfit0800.pfb" 1775415801 150882 85f9c798053ab155eb37c34984ba1d2f ""
+  "/usr/share/texmf-dist/fonts/type1/public/cm-super/sfit0900.pfb" 1775415801 158366 01d97129a4bd5d2ecf7b6bfbd124c543 ""
   "/usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0800.pfb" 1775415801 175641 e30a691dc1402b08fd6535cf8a31e5b7 ""
   "/usr/share/texmf-dist/fonts/type1/public/cm-super/sftt0900.pfb" 1775415801 170827 2e4b634de7b58578eae1dc93e51dfe48 ""
   "/usr/share/texmf-dist/fonts/type1/public/stix2-type1/STIX2Math.pfb" 1775415801 1095268 889498542f05a309f190bb89c64415e5 ""
@@ -248,13 +260,20 @@
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1775663517 2328183 4b38c889a454136904b143433cb9588c ""
   "NJDnatbib.sty" 1778354688.4177 46229 b23b408004050376b05f17f766e34127 ""
   "USG.cls" 1778355577.44169 94972 9fa54456532aa730458aa68f661bff65 ""
+  "_minted/1AFF774913D56AEFEE621D8FE98547BC.highlight.minted" 1778359028.55065 540 347c1fb519caf4a254c46c1e7559a319 ""
+  "_minted/2925811DA630729476EB24FB7434B1E5.highlight.minted" 1778360379.67562 2677 791d8702e374e1af21b6cdd0087b3899 ""
+  "_minted/56C2DC39E10FE598369885901C1F9685.highlight.minted" 1778361125.49817 634 be714c9b4f935dd0e0176dbc8aba7032 ""
+  "_minted/80837BD98C4293B3D477922393D3104D.highlight.minted" 1778359488.3399 370 0af93043179ca2af0ddc237fbce7f3ef ""
   "_minted/AE38398DF34EAABE86692C8720227FE4.highlight.minted" 1778357480.65188 1888 1cf2f8d5ecc18ca469331ba18dbe28dd ""
-  "_minted/_926BA1D003D867142E3F30030A84B2C6.index.minted" 1778357481.40447 289 f058ec33af137389038fa136ddcff710 ""
+  "_minted/B7D2A5C43BA1D2FCBC7A3C79C8A4D605.highlight.minted" 1778361300.43763 468 a0b88bf4176fed1159ad1fb6c5cb155c ""
+  "_minted/D3BE35AEA5A0BABB4B8C04633E52572C.highlight.minted" 1778359488.77344 418 31c6343000e6eb59ffa063334615e8c2 ""
+  "_minted/_926BA1D003D867142E3F30030A84B2C6.index.minted" 1778361300.78954 631 8bc80a9ae6f2f9bf3197cf5a3764d976 ""
   "_minted/trac.style.minted" 1778357211.85651 6019 f081d64870fff92ff8299f9bc2f76031 ""
   "images/jogo.png" 1778356728.15351 19151 2ae26313c52675d4f08954375dd02fb9 ""
   "lettersp.sty" 1778354843.97526 12163 b6de1fa5e93e58dc68ba3c77a1af2e61 ""
-  "relatorio-joao-luis-almeida-santos.aux" 1778357940.8739 3702 bded36372d836af2526a90fdb7e32f42 "pdflatex"
-  "relatorio-joao-luis-almeida-santos.tex" 1778357934.6619 5023 e102560f190d72c33399eafe5b8147f8 ""
+  "relatorio-joao-luis-almeida-santos.aux" 1778361737.54143 5321 4d5e85eff38f5ab333976eeb46e580a2 "pdflatex"
+  "relatorio-joao-luis-almeida-santos.bbl" 1778361734.35091 347 c49a19f2f88610bcb72591987fb0d160 "bibtex relatorio-joao-luis-almeida-santos"
+  "relatorio-joao-luis-almeida-santos.tex" 1778361731.18597 12669 8e420e88a32adc2f86c7f1f03623bb91 ""
   (generated)
   "relatorio-joao-luis-almeida-santos.aux"
   "relatorio-joao-luis-almeida-santos.log"

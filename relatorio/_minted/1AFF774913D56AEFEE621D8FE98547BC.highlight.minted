@@ -1,0 +1,9 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{n+nl}{do\PYGZus{}absolute\PYGZus{}grit:}
+\PYG{+w}{  }\PYG{n+nf}{startF}
+\PYG{+w}{  }\PYG{n+nf}{call}\PYG{+w}{ }\PYG{n+no}{calculate\PYGZus{}damage}
+\PYG{+w}{  }\PYG{n+nf}{j}\PYG{+w}{ }\PYG{n+no}{do\PYGZus{}attack\PYGZus{}crit\PYGZus{}no\PYGZus{}message}\PYG{+w}{  }\PYG{c+c1}{\PYGZsh{} endF nunca e chamado}
+
+\PYG{c+c1}{\PYGZsh{} para consertar o problema foi necessário redefinir a função de crítico, e nessa versão alternativa,}
+\PYG{c+c1}{\PYGZsh{} há um endF}
+\end{MintedVerbatim}

@@ -1,0 +1,5 @@
+\begin{MintedVerbatim}[commandchars=\\\{\}]
+\PYG{+w}{  }\PYG{n+nf}{la}\PYG{+w}{ }\PYG{n+no}{t0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{modo\PYGZus{}play}
+\PYG{+w}{  }\PYG{n+nf}{lw}\PYG{+w}{ }\PYG{n+no}{t0}\PYG{p}{,}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{(}\PYG{n+no}{t0}\PYG{p}{)}
+\PYG{+w}{  }\PYG{n+nf}{bnez}\PYG{+w}{ }\PYG{n+no}{t0}\PYG{p}{,}\PYG{+w}{ }\PYG{n+no}{do\PYGZus{}turn\PYGZus{}action}\PYG{+w}{  }\PYG{c+c1}{\PYGZsh{} em benchmark pula a animacao}
+\end{MintedVerbatim}
