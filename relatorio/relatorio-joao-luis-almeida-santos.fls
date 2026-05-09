@@ -567,6 +567,7 @@ INPUT ./images/jogo.png
 INPUT ./images/jogo.png
 INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text-bold.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text-bold.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text-italic.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/stix2-mathrm.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/stix2-mathit.tfm
@@ -634,6 +635,7 @@ OUTPUT relatorio-joao-luis-almeida-santos.pag
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathit.enc
 INPUT /usr/share/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathcal.enc
 INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text-bold.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/ecit0900.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text-italic.tfm
 OUTPUT _926BA1D003D867142E3F30030A84B2C6.data.minted
@@ -649,8 +651,12 @@ INPUT ./_minted/2925811DA630729476EB24FB7434B1E5.highlight.minted
 INPUT ./_minted/2925811DA630729476EB24FB7434B1E5.highlight.minted
 INPUT _minted/2925811DA630729476EB24FB7434B1E5.highlight.minted
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/ectt0800.tfm
-INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/ecit0800.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text-bold.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/ectt0800.tfm
+INPUT /usr/share/texmf-dist/fonts/tfm/public/stix2-type1/t1-stix2text.tfm
+INPUT /usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
+INPUT /usr/share/texmf-dist/fonts/enc/dvips/stix2-type1/stix2-mathsf.enc
 INPUT /usr/share/texmf-dist/fonts/tfm/jknappen/ec/ectt0900.tfm
 INPUT ./_minted/AE38398DF34EAABE86692C8720227FE4.highlight.minted
 INPUT ./_minted/AE38398DF34EAABE86692C8720227FE4.highlight.minted
@@ -661,7 +667,6 @@ INPUT _minted/1AFF774913D56AEFEE621D8FE98547BC.highlight.minted
 INPUT ./_minted/56C2DC39E10FE598369885901C1F9685.highlight.minted
 INPUT ./_minted/56C2DC39E10FE598369885901C1F9685.highlight.minted
 INPUT _minted/56C2DC39E10FE598369885901C1F9685.highlight.minted
-INPUT /usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
 INPUT ./_minted/B7D2A5C43BA1D2FCBC7A3C79C8A4D605.highlight.minted
 INPUT ./_minted/B7D2A5C43BA1D2FCBC7A3C79C8A4D605.highlight.minted
 INPUT _minted/B7D2A5C43BA1D2FCBC7A3C79C8A4D605.highlight.minted
@@ -718,6 +723,7 @@ INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msam5.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm10.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
 INPUT /usr/share/texmf-dist/fonts/tfm/public/amsfonts/symbols/msbm5.tfm
+OUTPUT _926BA1D003D867142E3F30030A84B2C6.data.minted
 INPUT relatorio-joao-luis-almeida-santos.aux
 INPUT /usr/share/texmf-dist/fonts/type1/public/stix2-type1/STIX2Math.pfb
 INPUT /usr/share/texmf-dist/fonts/type1/public/stix2-type1/STIX2Text-Bold.pfb

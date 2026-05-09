@@ -5,6 +5,7 @@
 \setminted{fontsize=\footnotesize, breaklines=true, breakanywhere=true}
 
 \definecolor{LightGray}{gray}{0.9}
+\linespread{1.5}
 
 \articletype{Undertale in Extremis: Simulador de Batalhas em Risc-V}
 
@@ -233,6 +234,27 @@ Houveram outros problemas documentados, só que alguns deles se mantiveram como 
 não foi feita para causar 800\% de dano, foi pensada para apenas causar o dobro. Mas houve um erro de cálculo e 
 uma junção de multiplicações, e, nesse caso, foi mantido o bug porque realmente era mais certeiro.
 \section{Conclusão}
+
+O projeto resultou em um simulador de batalhas funcional em assembly RISC-V, com três bots e um modo de benchmark que roda 10.000 partidas automaticamente.
+Os resultados do benchmark foram contraintuitivos, conforme a Tabela~\ref{tab:winrates}. Normalmente, esperaria-se que os algoritmos mais 
+planejados seriam mais eficazes, no entanto, o contrário ocorreu.
+
+\vspace{4pt}\noindent
+{\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{ll}
+\hline
+\textbf{Bot} & \textbf{Taxa de vitória} \\
+\hline
+Flowey & $\sim$52\% \\
+Toby   & $\sim$29\% \\
+Chara  & $\sim$17\% \\
+\hline
+\end{tabular}}\label{tab:winrates}
+\vspace{4pt}
+
+Flowey, o bot aleatório, ganhou a maioria das partidas. Chara, a mais elaborada, ficou em último. Com apenas seis ações e dano alto por turno, uma estratégia cuidadosa não tem vantagem real sobre o caos. O plano original incluía mais bots, mas balancear se mostrou difícil, e o espaço de ação era pequeno demais para que um quarto bot fizesse algo diferente dos três já existentes.
+
+Na parte técnica, o projeto exigiu lidar com coisas que linguagens de alto nível escondem: stack manual, preservação de registradores e controle de fluxo via saltos. Os bugs foram difíceis de achar justamente por serem silenciosos, como o stack leak da Absolute Grit e o ataque que curava por corrupção de registrador.
 
 \section{Anexos}
 
